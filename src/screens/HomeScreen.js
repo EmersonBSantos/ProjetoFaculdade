@@ -4,6 +4,7 @@ import {
   View,
   Text,
   FlatList,
+  Image,
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
@@ -43,6 +44,10 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+    <Image
+  source={require('../../assets/maceio.png')}
+  style={styles.imagem}
+/>
 
       <TouchableOpacity
         style={styles.botao}
@@ -116,6 +121,13 @@ const styles = StyleSheet.create({
   titulo: {
     fontWeight: 'bold',
     fontSize: 18
-  }
+  },
+
+  imagem: {
+  width: '100%',
+  height: 180,
+  borderRadius: 15,
+  marginBottom: 20
+},
 
 });
