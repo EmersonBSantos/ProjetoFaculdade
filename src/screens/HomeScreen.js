@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
 
   botao: {
-    backgroundColor: '#1E90FF',
+    backgroundColor: '#63c1ff',
     padding: 15,
     borderRadius: 10,
     marginBottom: 20

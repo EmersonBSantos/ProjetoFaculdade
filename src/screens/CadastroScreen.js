@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
 
   botao: {
-    backgroundColor: '#32CD32',
+    backgroundColor: '#32cd3a',
     padding: 15,
     borderRadius: 10
   },
