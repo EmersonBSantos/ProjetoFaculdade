@@ -92,14 +92,14 @@ const styles = StyleSheet.create({
   },
 
   botaoEditar: {
-    backgroundColor: 'orange',
+    backgroundColor: '#0984E3',
     padding: 15,
     borderRadius: 10,
     marginTop: 20
   },
 
   botaoExcluir: {
-    backgroundColor: 'red',
+    backgroundColor: '#e30909',
     padding: 15,
     borderRadius: 10,
     marginTop: 20
