@@ -56,7 +56,7 @@ export default function HomeScreen({ navigation }) {
         }
       >
         <Text style={styles.botaoTexto}>
-          Novo Problema
+          Nova Denúncia
         </Text>
       </TouchableOpacity>
 
