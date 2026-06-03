@@ -1,4 +1,8 @@
+// Hooks usados no projeto
+
 import React, { useEffect, useState, useCallback } from 'react';
+
+// Componentes visuais do React Native
 
 import {
   View,
@@ -10,6 +14,8 @@ import {
   Alert
 } from 'react-native';
 
+// Funções do firebase
+
 import {
   collection,
   getDocs,
@@ -17,7 +23,11 @@ import {
   doc
 } from 'firebase/firestore';
 
+// arquivode conexão do banco
+
 import { db } from '../services/firebase';
+
+// Atualiza tela quando volta para home
 
 import {
   useFocusEffect
@@ -25,13 +35,21 @@ import {
 
 export default function HomeScreen({ navigation }) {
 
+  // guarda as denuncias cadastradas no banco
+
   const [dados, setDados] = useState([]);
 
+  // função responsável por buscar as denuncias no banco
+
   async function carregarDados() {
+
+    // Busca todos os documentos da coleção "problemas"
 
     const querySnapshot = await getDocs(
       collection(db, 'problemas')
     );
+
+    // Array temporario para armazenar os dados
 
     const lista = [];
 
@@ -42,8 +60,12 @@ export default function HomeScreen({ navigation }) {
       });
     });
 
+    // Atualiza o estado com os dados carregados
+
     setDados(lista);
   }
+
+    // Atualiza a lista quando volta ao home
 
   useFocusEffect(
   useCallback(() => {
@@ -51,7 +73,11 @@ export default function HomeScreen({ navigation }) {
   }, [])
   );
 
+    // Confirma antes de excluir a denuncia
+
   function confirmarExclusao(id) {
+
+    // Função de alerta para não excluir por engano
 
   Alert.alert(
     'Excluir ocorrência',
@@ -95,6 +121,8 @@ export default function HomeScreen({ navigation }) {
           Nova Denúncia
         </Text>
       </TouchableOpacity>
+
+        //  exibe todas as denuncias
 
       <FlatList
         data={dados}
