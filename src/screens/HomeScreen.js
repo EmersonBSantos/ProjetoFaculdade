@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import {
   View,
@@ -11,10 +11,16 @@ import {
 
 import {
   collection,
-  getDocs
+  getDocs,
+  deleteDoc,
+  doc
 } from 'firebase/firestore';
 
 import { db } from '../services/firebase';
+
+import {
+  useFocusEffect
+} from '@react-navigation/native';
 
 export default function HomeScreen({ navigation }) {
 
@@ -38,9 +44,20 @@ export default function HomeScreen({ navigation }) {
     setDados(lista);
   }
 
-  useEffect(() => {
+  useFocusEffect(
+  useCallback(() => {
     carregarDados();
-  }, []);
+  }, [])
+  );
+
+  async function excluirProblema(id) {
+
+  await deleteDoc(
+    doc(db, 'problemas', id)
+  );
+
+  carregarDados();
+}
 
   return (
     <View style={styles.container}>
@@ -81,6 +98,38 @@ export default function HomeScreen({ navigation }) {
             <Text>
               {item.bairro}
             </Text>
+
+            <View style={styles.areaBotoes}>
+
+  <TouchableOpacity
+    style={styles.botaoEditar}
+    onPress={() =>
+      navigation.navigate('Detalhes', {
+        item
+      })
+    }
+  >
+
+    <Text style={styles.textoBotao}>
+      ✏️
+    </Text>
+
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={styles.botaoExcluir}
+    onPress={() =>
+      excluirProblema(item.id)
+    }
+  >
+
+    <Text style={styles.textoBotao}>
+      🗑️
+    </Text>
+
+  </TouchableOpacity>
+
+</View>
 
           </TouchableOpacity>
 
@@ -128,6 +177,29 @@ const styles = StyleSheet.create({
   height: 180,
   borderRadius: 15,
   marginBottom: 20
+},
+
+  areaBotoes: {
+  flexDirection: 'row',
+  marginTop: 10
+},
+
+  botaoEditar: {
+  backgroundColor: '#0984E3',
+  padding: 10,
+  borderRadius: 8,
+  marginRight: 10
+},
+
+  botaoExcluir: {
+  backgroundColor: '#D63031',
+  padding: 10,
+  borderRadius: 8
+},
+
+  textoBotao: {
+  color: '#fff',
+  fontWeight: 'bold'
 },
 
 });
