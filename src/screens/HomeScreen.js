@@ -167,10 +167,12 @@ const styles = StyleSheet.create({
   },
 
   botao: {
-    backgroundColor: '#63c1ff',
+    backgroundColor: '#6C63FF',
+    elevation: 3,
     padding: 15,
     borderRadius: 10,
     marginBottom: 20
+    
   },
 
   botaoTexto: {
@@ -180,11 +182,22 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    backgroundColor: '#f1f1f1',
-    padding: 15,
-    marginBottom: 10,
-    borderRadius: 10
+  backgroundColor: '#ffffff',
+  padding: 18,
+  marginBottom: 15,
+  borderRadius: 15,
+
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 2
   },
+
+  shadowOpacity: 0.1,
+  shadowRadius: 4,
+
+  elevation: 3
+},
 
   titulo: {
     fontWeight: 'bold',
