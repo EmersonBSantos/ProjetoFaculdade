@@ -4,7 +4,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native';
 
 import {
@@ -21,14 +22,36 @@ export default function DetalhesScreen({
 
   const { item } = route.params;
 
-  async function excluir() {
+// pede para confirmar antes de excluir a denuncia
+function confirmarExclusao() {
 
-    await deleteDoc(
-      doc(db, 'problemas', item.id)
-    );
+  // alerta de confirmação
+  Alert.alert(
+    'Excluir ocorrência',
+    'Deseja realmente excluir esta denúncia?',
 
-    navigation.goBack();
-  }
+    [
+      {
+        text: 'Cancelar',
+        style: 'cancel'
+      },
+
+      {
+        text: 'Excluir',
+
+        // exclui somente se confirmar
+        onPress: async () => {
+
+          await deleteDoc(
+            doc(db, 'problemas', item.id)
+          );
+
+          navigation.goBack();
+        }
+      }
+    ]
+  );
+}
 
   return (
 
