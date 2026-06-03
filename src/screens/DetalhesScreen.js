@@ -84,7 +84,7 @@ function confirmarExclusao() {
 
       <TouchableOpacity
         style={styles.botaoExcluir}
-        onPress={excluir}
+        onPress={confirmarExclusao}
       >
         <Text style={styles.botaoTexto}>
           Excluir
