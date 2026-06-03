@@ -51,13 +51,31 @@ export default function HomeScreen({ navigation }) {
   }, [])
   );
 
-  async function excluirProblema(id) {
+  function confirmarExclusao(id) {
 
-  await deleteDoc(
-    doc(db, 'problemas', id)
+  Alert.alert(
+    'Excluir ocorrência',
+    'Deseja realmente excluir esta denúncia?',
+    [
+      {
+        text: 'Cancelar',
+        style: 'cancel'
+      },
+
+      {
+        text: 'Excluir',
+
+        onPress: async () => {
+
+          await deleteDoc(
+            doc(db, 'problemas', id)
+          );
+
+          carregarDados();
+        }
+      }
+    ]
   );
-
-  carregarDados();
 }
 
   return (
@@ -120,7 +138,7 @@ export default function HomeScreen({ navigation }) {
   <TouchableOpacity
     style={styles.botaoExcluir}
     onPress={() =>
-      excluirProblema(item.id)
+      confirmarExclusao(item.id)
     }
   >
 
