@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
 
   areaBotoes: {
   flexDirection: 'row',
-  marginTop: 10
+  marginTop: 15
 },
 
   botaoEditar: {
