@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native';
 
 import {
@@ -41,35 +42,46 @@ export default function CadastroScreen({
 
   }, []);
 
-  async function salvar() {
+  async function salvarProblema() {
 
-    if (route.params?.item) {
+  if (
+    titulo.trim() === '' ||
+    descricao.trim() === '' ||
+    bairro.trim() === ''
+  ) {
+    Alert.alert(
+      'Campos obrigatórios',
+      'Preencha todos os campos antes de salvar.'
+    );
+    return;
+  }
 
-      await updateDoc(
-        doc(db, 'problemas', route.params.item.id),
-        {
-          titulo,
-          descricao,
-          bairro
-        }
-      );
+  if (route.params?.item) {
 
-    } else {
+    await updateDoc(
+      doc(db, 'problemas', route.params.item.id),
+      {
+        titulo,
+        descricao,
+        bairro
+      }
+    );
 
-      await addDoc(
-        collection(db, 'problemas'),
-        {
-          titulo,
-          descricao,
-          bairro
-        }
-      );
+  } else {
 
-    }
-if (navigation.canGoBack()) {
+    await addDoc(
+      collection(db, 'problemas'),
+      {
+        titulo,
+        descricao,
+        bairro
+      }
+    );
+
+  }
+
   navigation.goBack();
 }
-  }
 
   return (
 
@@ -98,7 +110,7 @@ if (navigation.canGoBack()) {
 
       <TouchableOpacity
         style={styles.botao}
-        onPress={salvar}
+        onPress={salvarProblema}
       >
 
         <Text style={styles.botaoTexto}>
