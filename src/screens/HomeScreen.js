@@ -122,7 +122,6 @@ export default function HomeScreen({ navigation }) {
         </Text>
       </TouchableOpacity>
 
-        //  exibe todas as denuncias
 
       <FlatList
         data={dados}
